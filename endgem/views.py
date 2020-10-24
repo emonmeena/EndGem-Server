@@ -14,9 +14,9 @@ def courses(request):
         return Response(serializedData.data)
 
 @api_view(['GET', 'POST'])
-def materials(request):
+def materials(request, courseID):
     if request.method == 'GET':
-        materialList = Material.objects.all()
+        materialList = Material.objects.filter(course=courseID)
 
         serializedData = MaterialSerializers(materialList, context = {'request': request}, many=True)
 
