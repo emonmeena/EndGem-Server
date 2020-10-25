@@ -12,4 +12,4 @@ class MaterialSerializers(serializers.ModelSerializer):
 
     class Meta:
         model =  Material
-        fields = ("pk", "name", "course") 
+        fields = ("pk", "name", "course", "downloads", "dateAdded") 
