@@ -39,3 +39,11 @@ def materialList(request):
             return Response(status=HTTP_201_CREATED)
 
         return Response(serializedData.errors, status = HTTP_400_BAD_REQUEST)     
+
+@api_view(['GET'])
+def top_gems(request, pk):
+    if request.method == 'GET':
+        topgems = Material.objects.filter(course=pk).order_by('downloads')[:5]
+
+        serializedData = MaterialSerializers(topgems, many=True)
+        return Response(serializedData.data)
